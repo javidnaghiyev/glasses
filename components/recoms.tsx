@@ -55,13 +55,12 @@ export default function Recoms({ analysis }: { analysis: AnalysisResult | null }
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1">
-                  <Link href={item.link} target="_blank">
-                    <h4 className="font-medium text-foreground mb-2 flex items-center gap-2 hover:underline">
+                  <div>
+                    <h4 className="font-medium text-foreground mb-2 flex items-center gap-2">
                       <span className="w-2 h-2 bg-accent rounded-full"></span>
                       {item.style}
-                      <span className="text-xs">↗</span>
                     </h4>
-                  </Link>
+                  </div>
                   <p className="text-muted-foreground text-sm leading-relaxed">
                     {item.reason}
                   </p>

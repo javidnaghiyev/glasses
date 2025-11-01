@@ -23,7 +23,9 @@ export default function Home() {
       });
      
       const data = await response.json();
-      setAnalysis(JSON.parse(data.response));
+      console.log(data);
+      
+      setAnalysis(JSON.parse(data));
     } catch (error) {
       console.error('Error analyzing image:', error);
     } finally {

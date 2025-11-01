@@ -1,11 +1,15 @@
 import { NextResponse, NextRequest } from "next/server";
 import { GoogleGenAI, Type } from "@google/genai";
 
+// Initialize Gemini AI client
 const gemini = new GoogleGenAI({});
 
-const prompt = "Identify the shape of this face to determine which style of glasses would suit them. Also give examples of celebrities with the same face shape. Then suggest 3 styles of glasses that would suit this face shape and explain why. Finally, recommend 3 specific glasses from a popular ecommerce site with links.";
+//  prompt
+const prompt = "Identify the shape of this face to determine which style of glasses would suit them. Also give examples of celebrities with the same face shape. Then suggest 3 styles of glasses that would suit this face shape and explain why. Finally, recommend 3 specific glasses.";
 
-const config = {
+
+//  config
+const config1 = {
     responseMimeType: 'application/json',
     responseSchema: {
             type: Type.OBJECT,
@@ -30,9 +34,6 @@ const config = {
                             },
                             reason: {
                                 type: Type.STRING,
-                            },
-                            link: {
-                                type: Type.STRING,
                             }
                         }
                     }
@@ -54,14 +55,23 @@ export async function POST(req: NextRequest, res: NextResponse) {
             { text: prompt }
         ]
 
-        const response = await gemini.models.generateContent({
+        const data = await gemini.models.generateContent({
             model: "gemini-2.5-flash",
             contents: contents,
-            config: config
+            config: config1
         });
+         
+        if (!data.text) {
+            console.log("No text response from Gemini AI");
+            return NextResponse.json({ error: "No response from Gemini AI" }, { status: 500 });
+        }
+
+        console.log(data.text);
         
-        return NextResponse.json({ response: response.text }, { status: 200 });
+        return NextResponse.json(data.text, { status: 200 });
+        
     } catch (error: any) {
+        console.log(error);
         return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }
