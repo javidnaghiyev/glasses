@@ -70,8 +70,13 @@ export async function POST(req: NextRequest, res: NextResponse) {
         
         return NextResponse.json(data.text, { status: 200 });
         
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.log(error);
-        return NextResponse.json({ error: error.message }, { status: 500 });
+
+        // Narrow the type safely
+        const message =
+            error instanceof Error ? error.message : String(error);
+
+        return NextResponse.json({ error: message }, { status: 500 });
     }
 }
