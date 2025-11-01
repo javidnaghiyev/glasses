@@ -92,7 +92,7 @@ export default function Home() {
                 Ready to find your perfect frames?
               </h3>
               <p className="text-muted-foreground max-w-md mx-auto">
-                Upload a clear photo of your face and we'll analyze your face shape to recommend the best glasses styles for you.
+                Upload a clear photo of your face and we&apos;ll analyze your face shape to recommend the best glasses styles for you.
               </p>
             </div>
           )}
