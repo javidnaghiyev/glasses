@@ -42,7 +42,7 @@ const config1 = {
         }
 };
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
     try {
         const { image } = await req.json();
         const contents = [
