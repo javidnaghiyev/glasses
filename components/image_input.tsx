@@ -74,7 +74,7 @@ export default function ImageInput({ onImageSelected }: ImageInputProps) {
         setIsCameraOpen(true);
       } catch (err) {
         console.error("Camera access denied:", err);
-        alert("Unable to access your camera. Make sure you're on localhost or HTTPS.");
+        alert("Unable to access camera");
       }
     }
   };

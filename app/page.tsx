@@ -40,6 +40,10 @@ export default function Home() {
   };
  
   return (
+    <>
+    <head>
+      <link rel="icon" href="/favicon.ico" />
+    </head>
     <div className="min-h-screen bg-background transition-colors duration-200">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         {/* Header */}
@@ -106,5 +110,6 @@ export default function Home() {
         </footer>
       </div>
     </div>
+    </>
   );
 }
